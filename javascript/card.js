@@ -5,19 +5,28 @@
 
 // fetch Data.............
 const SearchButton =()=>{
-    const Inplut = document.getElementById("input_value");
+    const Input = document.getElementById("input_value");
     const Error = document.getElementById("Error")
-    const inputValue = Inplut.value;
+    const inputValue = Input.value;
     console.log(inputValue);
 
-    if(isNaN(inputValue)){
+    if(isNaN(inputValue) || inputValue ==""){
         Error.innerText="Please inter a Number"
-        
+        Input.value="" 
+    }
+    
+    else if(inputValue<=0){
+        Error.innerText="please Enter a Positive Number"
+    Input.value= ""
     }
 
-//     const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
-// fetch (url)
-// .then(Response => Response.json())
-// .then(data => console.log(data))
+    else{
+    const url = "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
+    fetch (url)
+    .then(Response => Response.json())
+    .then(data => console.log(data))
+    Input.value=""
+    }
+ 
 }
 
